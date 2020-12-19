@@ -63,7 +63,7 @@ def train_perceptron(my_data, hidden_size=200):
             layer_3 *= dropout_mask * 2
             layer_4 = utils.softmax(np.dot(layer_3, weights4) + b4)
 
-            layer_4_delta = (t - layer_4) / 1 * layer_4.shape[0]
+            layer_4_delta = (t - layer_4)
             layer_3_delta = layer_4_delta.dot(weights4.T) * utils.tanh_deriv(layer_3)
             layer_2_delta = layer_3_delta.dot(weights3.T) * utils.tanh_deriv(layer_2)
             layer_1_delta = layer_2_delta.dot(weights2.T) * utils.tanh_deriv(layer_1)
@@ -113,7 +113,7 @@ def train_perceptron(my_data, hidden_size=200):
             layer_4 = utils.softmax(layer_3.astype(np.float64).dot(weights4) + b4)
             val_error1 += utils.cross_entropy1(layer_4[0], t)
 
-        print(f'Train error {error1 / len(training_data)} ---- Validation error {val_error1 / len(validation_data)} ')
+        print(f'Epoch: {j}/{iterations}Train loss {error1 / len(training_data)} ---- Validation loss {val_error1 / len(validation_data)} ')
         valer_gr.append(val_error1 / len(validation_data))
         error_gr.append(error1 / len(training_data))
     w1 = weights1
