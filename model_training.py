@@ -113,7 +113,9 @@ def train_perceptron(my_data, hidden_size=200):
             layer_4 = utils.softmax(layer_3.astype(np.float64).dot(weights4) + b4)
             val_error1 += utils.cross_entropy1(layer_4[0], t)
 
-        print(f'Epoch: {j}/{iterations}Train loss {error1 / len(training_data)} ---- Validation loss {val_error1 / len(validation_data)} ')
+            epoch_timer = j + 1
+
+        print(f'Epoch: {epoch_timer}/{iterations} Train loss {error1 / len(training_data)} ---- Validation loss {val_error1 / len(validation_data)} ')
         valer_gr.append(val_error1 / len(validation_data))
         error_gr.append(error1 / len(training_data))
     w1 = weights1
