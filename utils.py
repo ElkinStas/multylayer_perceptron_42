@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
+
 def tanh(x):
     return np.tanh(x)
 
@@ -9,17 +10,18 @@ def tanh(x):
 def tanh_deriv(output):
     return 1 - (output ** 2)
 
+
 def softmax(x):
     temp = np.exp(x)
     return temp / np.sum(temp, axis=1, keepdims=True)
 
 
 def cross_entropy1(predictions, targets, epsilon=1e-12):
-
     predictions = np.clip(predictions, epsilon, 1. - epsilon)
     N = predictions.shape[0]
-    ce = -np.sum(targets*np.log(predictions+1e-9))/N
+    ce = -np.sum(targets * np.log(predictions + 1e-9)) / N
     return ce
+
 
 def visual_of_learning(error_y, val_y):
     x = []
@@ -40,8 +42,7 @@ def visual_of_learning(error_y, val_y):
     plt.show()
 
 
-
-def write_weights(w1,b1,w2,b2,w3,b3,w4,b4):
+def write_weights(w1, b1, w2, b2, w3, b3, w4, b4):
     np.savetxt("w1.csv", w1, delimiter=",")
     np.savetxt("b1.csv", b1, delimiter=",")
     np.savetxt("w2.csv", w2, delimiter=",")
@@ -50,6 +51,7 @@ def write_weights(w1,b1,w2,b2,w3,b3,w4,b4):
     np.savetxt("b3.csv", b3, delimiter=",")
     np.savetxt("w4.csv", w4, delimiter=",")
     np.savetxt("b4.csv", b4, delimiter=",")
+
 
 class Perceptron:
     def __init__(self, n_inp, n_out):

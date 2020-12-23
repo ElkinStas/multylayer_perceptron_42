@@ -85,19 +85,19 @@ def train_perceptron(my_data, hidden_size=200):
 
         for index, row in validation_data.iterrows():
             fit1 = (row['fi7'] - validation_data['fi7'].min()) / (
-                        validation_data['fi7'].max() - validation_data['fi7'].min())
+                    validation_data['fi7'].max() - validation_data['fi7'].min())
             fit2 = (row['fi11'] - validation_data['fi11'].min()) / (
-                        validation_data['fi11'].max() - validation_data['fi11'].min())
+                    validation_data['fi11'].max() - validation_data['fi11'].min())
             fit3 = (row['fi1'] - validation_data['fi1'].min()) / (
-                        validation_data['fi1'].max() - validation_data['fi1'].min())
+                    validation_data['fi1'].max() - validation_data['fi1'].min())
             fit4 = (row['fi28'] - validation_data['fi28'].min()) / (
                     validation_data['fi28'].max() - validation_data['fi28'].min())
             fit5 = (row['fi8'] - validation_data['fi8'].min()) / (
                     validation_data['fi8'].max() - validation_data['fi8'].min())
             fit6 = (row['fi23'] - validation_data['fi23'].min()) / (
-                        validation_data['fi23'].max() - validation_data['fi23'].min())
+                    validation_data['fi23'].max() - validation_data['fi23'].min())
             fit7 = (row['fi24'] - validation_data['fi24'].min()) / (
-                        validation_data['fi24'].max() - validation_data['fi24'].min())
+                    validation_data['fi24'].max() - validation_data['fi24'].min())
 
             if row['di'] == 'M':
                 t = np.array([1, 0])
@@ -115,7 +115,8 @@ def train_perceptron(my_data, hidden_size=200):
 
             epoch_timer = j + 1
 
-        print(f'Epoch: {epoch_timer}/{iterations} Train loss {error1 / len(training_data)} ---- Validation loss {val_error1 / len(validation_data)} ')
+        print(
+            f'Epoch: {epoch_timer}/{iterations} Train loss {error1 / len(training_data)} ---- Validation loss {val_error1 / len(validation_data)} ')
         valer_gr.append(val_error1 / len(validation_data))
         error_gr.append(error1 / len(training_data))
     w1 = weights1
@@ -129,7 +130,7 @@ def train_perceptron(my_data, hidden_size=200):
 
 def main():
     try:
-        training_data= pd.read_csv(sys.argv[1])
+        training_data = pd.read_csv(sys.argv[1])
         error_y, val_y = train_perceptron(training_data)
         utils.visual_of_learning(error_y, val_y)
     except:
